@@ -1,0 +1,160 @@
+// VARIABLES
+$color-heading: hsl(234, 12%, 34%);
+$color-text: hsl(229, 6%, 66%);
+$color-bg-card: hsl(0, 0%, 98%);
+$color-supervisor: hsl(180, 62%, 55%);
+$color-builder: hsl(0, 78%, 62%);
+$color-karma: hsl(34, 97%, 64%);
+$color-calculator: hsl(212, 86%, 64%);
+
+// MIXINS
+// for laptops
+@mixin laptops {
+  @media screen and (min-width: 90em) {
+    @content;
+  }
+}
+
+// for big desktops
+@mixin desktops {
+  @media screen and (min-width: 150em) {
+    @content;
+  }
+}
+
+// GENERAL STYLES
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: $color-text;
+  line-height: 1.7;
+}
+
+.container {
+  min-height: 100vh;
+  max-width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include desktops {
+    min-height: 75vh;
+    max-width: 120rem;
+    margin: 10rem auto;
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.1),
+      -1rem -1rem 1rem rgba(0, 0, 0, 0.1);
+  }
+}
+
+//FEATURE SECTION STYLES
+.section-feature {
+  padding: 8rem 3rem;
+  max-width: 110rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 8rem;
+}
+
+// HEADER STYLES
+.header {
+  text-align: center;
+
+  @include laptops {
+    width: 50%;
+    justify-self: center;
+  }
+
+  &--heading {
+    margin-bottom: 2rem;
+    color: $color-heading;
+    font-size: 2.5rem;
+
+    &-sub {
+      font-weight: 200;
+    }
+
+    &-main {
+      font-weight: 600;
+    }
+  }
+}
+
+// CARDS STYLES
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 3rem;
+
+  @include laptops {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .card {
+    padding: 2rem;
+    background-color: $color-bg-card;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    border-radius: 1rem;
+    border-top: 5px solid transparent;
+
+    &--heading {
+      color: $color-heading;
+      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &--description {
+      margin-bottom: 4rem;
+    }
+
+    &--img-box {
+      text-align: right;
+    }
+  }
+
+  .card-1 {
+    border-top-color: $color-supervisor;
+
+    @include laptops {
+      grid-column: 1 / 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+    }
+  }
+
+  .card-2 {
+    border-top-color: $color-builder;
+  }
+
+  .card-3 {
+    border-top-color: $color-karma;
+
+    @include laptops {
+      grid-row: 2 / 3;
+      grid-column: 2 / 3;
+    }
+  }
+
+  .card-4 {
+    border-top-color: $color-calculator;
+
+    @include laptops {
+      grid-column: 3 / 4;
+      grid-row: 1 / span 2;
+      align-self: center;
+    }
+  }
+}
